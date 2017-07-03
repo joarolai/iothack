@@ -1,0 +1,23 @@
+{
+  "name": "mic-node-mqtt-sub",
+  "version": "0.0.1",
+  "description": "Project code for the MIC API MQTT Subscription guide.",
+  "main": "index.js",
+  "dependencies": {
+    "aws-iot-device-sdk": "^2.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TelenorStartIoT/mic-node-mqtt-sub.git"
+  },
+  "author": "Pontus Aurdal <pontus.edvard@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TelenorStartIoT/mic-node-mqtt-sub/issues"
+  },
+  "homepage": "https://github.com/TelenorStartIoT/mic-node-mqtt-sub#readme"
+}
