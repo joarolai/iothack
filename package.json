@@ -4,7 +4,8 @@
   "description": "Project code for the MIC API MQTT Subscription guide.",
   "main": "index.js",
   "dependencies": {
-    "aws-iot-device-sdk": "^2.0.0"
+    "aws-iot-device-sdk": "^2.0.0",
+    "socket.io": "^2.0.3"
   },
   "devDependencies": {},
   "scripts": {

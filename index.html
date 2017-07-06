@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+  </head>
+  <body>
+    <canvas id="output" width="600" height="250"></canvas>
+
+    <script>
+      // Create the CHartjs element
+      var ctx = document.getElementById('output').getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Temperature',
+                data: []
+            }]
+        }
+      });
+
+      // Function to dynamically add data to the chart and update it
+      function addData(chart, label, data) {
+        chart.data.labels.push(label);
+        chart.data.datasets.forEach((dataset) => {
+          dataset.data.push(data);
+        });
+        chart.update();
+      }
+
+      // Init SOcket.io and add data to chert when broadcasted
+      var socket = io('http://localhost:3000');
+      socket.on('broadcast', function(data) {
+        var payload = JSON.parse(data.message);
+        addData(myChart, new Date(), payload.state.reported.temperature);
+      });
+    </script>
+  </body>
+</html>
