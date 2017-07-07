@@ -8,7 +8,7 @@
     <canvas id="output" width="600" height="250"></canvas>
 
     <script>
-      // Create the CHartjs element
+      // Create the Chartjs element
       var ctx = document.getElementById('output').getContext('2d');
       var myChart = new Chart(ctx, {
         type: 'line',
@@ -30,7 +30,7 @@
         chart.update();
       }
 
-      // Init SOcket.io and add data to chert when broadcasted
+      // Init Socket.io and add data to chart when broadcasted
       var socket = io('http://localhost:3000');
       socket.on('broadcast', function(data) {
         var payload = JSON.parse(data.message);
