@@ -1,15 +1,5 @@
-# Managed IoT Cloud API MQTT Subscription Guide
+# IoT Hackathon example code
 
-> Project code for the MIC API MQTT Subscription guide.
+> Project code for the IoT Hackaton using Telenor Managed IoT Cloud
 
-## Build Setup
 
-``` bash
-# install dependencies
-npm install
-
-# run the program
-node index.js
-```
-
-Make sure to download and place your certificate files inside /certs.
