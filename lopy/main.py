@@ -1,20 +1,26 @@
-from startiot import Startiot
+from libiot import LoRaIoT
 import pycom
 import time
 
-pycom.heartbeat(False)     # disable the blue blinking
-iot = Startiot()
+# Change app_eui and app_key to match your application
+app_eui = "000000000000015d"
+app_key = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
 
-print("Connecting....")
-pycom.rgbled(0x0F0000)    # Red light when not connected
+pycom.heartbeat(False)              # Disable the blue blinking
+iot = LoRaIoT(app_eui, app_key)
+
+pycom.rgbled(0x0F0000)              # Red light when not connected
 iot.connect()
-pycom.rgbled(0x00000F)    # Blue light when connected
+pycom.rgbled(0x000F00)              # Green light when connected
 
 count = 0
 
 while True:
-  print("Send data...",  count)
   data = "TEMP,%s" % (count)
   count = count + 1
+  print("Send data:", data)
   iot.send(data)
+  pycom.rgbled(0x00000F)            # Blue flash when sending
+  time.sleep(0.1)
+  pycom.rgbled(0x000F00)            # Green light when sleeping
   time.sleep(10)
