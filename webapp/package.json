@@ -5,7 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "aws-iot-device-sdk": "^2.0.0",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.0.3",
+    "ttn": "^2.2.8"
   },
   "devDependencies": {},
   "scripts": {
