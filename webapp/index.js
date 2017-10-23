@@ -1,7 +1,7 @@
 var ttn = require("ttn")
 
-var appID = "nuapp"
-var accessKey = "ttn-account-v2.2G-9uzFhWozpOzWtilEnBqzFAANme6QVKaQeAnqQ-S8"
+var appID = "todo"	// Update to match your application
+var accessKey = "todo"	// Updated to match your application
 
 var io = require('socket.io')(3000);
 

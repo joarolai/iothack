@@ -1,6 +1,4 @@
-# Managed IoT Cloud API MQTT Subscription Guide
-
-> Project code for the MIC API MQTT Subscription guide.
+# TTN example web application
 
 ## Build Setup
 
@@ -11,5 +9,3 @@ npm install
 # run the program
 node index.js
 ```
-
-Make sure to download and place your certificate files inside /certs.
