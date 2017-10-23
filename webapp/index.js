@@ -1,24 +1,31 @@
-var awsIot = require('aws-iot-device-sdk');
+var ttn = require("ttn")
+
+var appID = "nuapp"
+var accessKey = "ttn-account-v2.2G-9uzFhWozpOzWtilEnBqzFAANme6QVKaQeAnqQ-S8"
+
 var io = require('socket.io')(3000);
 
-var thingName = '00000569'; // Replace with your own thing name
 
-var device = awsIot.device({
-   keyPath: './certs/privkey.pem',
-  certPath: './certs/cert.pem',
-    caPath: './certs/ca.pem',
-  clientId: thingName,
-      host: 'a31ovqfkmg1ev8.iot.eu-west-1.amazonaws.com'
-});
+ttn.data(appID, accessKey)
+  .then(function (client) {
+    client.on("uplink", function (devID, payload) {
 
-device.on('connect', function() {
-  console.log('Client connected');
-  device.subscribe('$aws/things/' + thingName + '/shadow/update');
-});
+      console.log(devID)
+      console.log(payload);
+      console.log(payload.metadata.gateways)
 
-device.on('message', function(topic, payload) {
-  console.log('Message: ', topic, payload.toString());
+      console.log("Received uplink from ", devID)
 
-  // Broadcast the message to any connected socket clients
-  io.emit('broadcast', {topic, message: payload.toString()});
-});
+      var maTemp = payload.payload_fields.temperature;
+
+      var telenorString ='{"state":{"reported":{"temperature":' + maTemp + '}}}';
+
+      console.log("Emit message");
+      io.emit('broadcast', {message: telenorString});
+
+    })
+  })
+  .catch(function (error) {
+    console.error("Error", error)
+    process.exit(1)
+  })
