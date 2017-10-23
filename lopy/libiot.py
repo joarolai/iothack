@@ -3,9 +3,8 @@ import socket, time, binascii, pycom, network
 
 class LoRaIoT:
   def __init__(self, eui, key):
+    print(binascii.hexlify(network.LoRa().mac()))
     self.dev_eui = network.LoRa().mac()
-    # Temporary work-around for bug in Telenor MIC
-    self.dev_eui = binascii.unhexlify("FFFFFFFF00001071")
     self.app_eui = binascii.unhexlify(eui)
     self.app_key = binascii.unhexlify(key)
     self.lora    = LoRa(mode=LoRa.LORAWAN)
